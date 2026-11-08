@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Producto Guardado</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .box { background: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 5px; width: 50%; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>¡Producto Procesado con Éxito!</h2>
+        <p><strong>ID Generado:</strong> <span th:text="${productoGuardado.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${productoGuardado.nombre}"></span></p>
+        <p><strong>Precio:</strong> $<span th:text="${productoGuardado.precio}"></span></p>
+        <p><strong>Categoría:</strong> <span th:text="${productoGuardado.categoria}"></span></p>
+    </div>
+    <br>
+    <a href="/productos">Regresar al catálogo</a>
+</body>
+</html>

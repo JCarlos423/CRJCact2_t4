@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Producto</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .card { border: 1px solid #ccc; padding: 20px; width: 350px; border-radius: 8px; }
+        .btn-danger { color: white; background-color: #dc3545; padding: 8px 12px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 10px; }
+        .btn-secondary { color: white; background-color: #6c757d; padding: 8px 12px; text-decoration: none; border-radius: 4px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h2>Detalle del Producto (Obtenido con @PathVariable)</h2>
+    
+    <div class="card" th:if="${producto != null}">
+        <p><strong>ID:</strong> <span th:text="${producto.id}"></span></p>
+        <p><strong>Nombre:</strong> <span th:text="${producto.nombre}"></span></p>
+        <p><strong>Precio:</strong> $<span th:text="${producto.precio}"></span></p>
+        <p><strong>Categoría:</strong> <span th:text="${producto.categoria}"></span></p>
+
+        <!-- Botón para eliminar con confirmación -->
+        <a th:href="@{/productos/eliminar/{id}(id=${producto.id})}" 
+           class="btn-danger" 
+           onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+           Eliminar Producto
+        </a>
+    </div>
+
+    <div th:if="${producto == null}">
+        <p style="color: red;">Producto no encontrado.</p>
+    </div>
+    
+    <br>
+    <a href="/productos" class="btn-secondary">Volver al listado</a>
+</body>
+</html>

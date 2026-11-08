@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 80%; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .info { background: #eef; padding: 10px; border-radius: 5px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1 th:text="${nombreProyecto}">Nombre Proyecto</h1>
+        <p><strong>Estudiante:</strong> <span th:text="${estudiante}">Nombre</span></p>
+    </div>
+
+    <h2>Catálogo de Productos</h2>
+
+    <form action="/productos" method="get">
+        <label for="categoria">Filtrar por Categoría (@RequestParam):</label>
+        <input type="text" id="categoria" name="categoria" th:value="${categoriaFiltro}" placeholder="ej. Electronica">
+        <button type="submit">Filtrar</button>
+        <a href="/productos">Limpiar Filtro</a>
+    </form>
+
+    <br>
+    <a href="/productos/nuevo">+ Registrar Nuevo Producto</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prod : ${productos}">
+                <td th:text="${prod.id}">1</td>
+                <td th:text="${prod.nombre}">Nombre</td>
+                <td th:text="${'$' + prod.precio}">$0.0</td>
+                <td th:text="${prod.categoria}">Categoría</td>
+                <td><a th:href="@{/productos/{id}(id=${prod.id})}">Ver Detalle</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
